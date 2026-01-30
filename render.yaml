@@ -1,0 +1,42 @@
+# Render Blueprint for ProGear Hiking Backend
+# Deploy this file by connecting your GitHub repo to Render
+
+services:
+  - type: web
+    name: progear-hiking-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DEBUG
+        value: "false"
+      - key: OKTA_DOMAIN
+        sync: false
+      - key: OKTA_CLIENT_ID
+        sync: false
+      - key: OKTA_CLIENT_SECRET
+        sync: false
+      - key: WLP_CLIENT_ID
+        sync: false
+      - key: WLP_PRIVATE_KEY
+        sync: false
+      - key: AUTH0_DOMAIN
+        sync: false
+      - key: AUTH0_CLIENT_ID
+        sync: false
+      - key: AUTH0_CLIENT_SECRET
+        sync: false
+      - key: SALESFORCE_INSTANCE_URL
+        sync: false
+      - key: SALESFORCE_CONNECTION_NAME
+        sync: false
+      - key: AZURE_FOUNDRY_ENDPOINT
+        sync: false
+      - key: AZURE_FOUNDRY_API_KEY
+        sync: false
+      - key: AZURE_FOUNDRY_DEPLOYMENT
+        value: "gpt-4o"
+      - key: CORS_ORIGINS
+        sync: false
